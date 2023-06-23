@@ -33,13 +33,10 @@ export const App = () => {
   };
 
   const countPositiveFeedback = () => {
-    return Math.round((good / countTotalFeedback()) * 100);
+    return Math.round((good / countTotalFeedback()) * 100) || 0;
   };
 
   const totalFeedback = countTotalFeedback();
-
-  let percentage = countPositiveFeedback();
-  percentage = isNaN(percentage) ? undefined : percentage;
 
   return (
     <div
@@ -66,7 +63,7 @@ export const App = () => {
             neutral={neutral}
             bad={bad}
             total={totalFeedback}
-            positivePercentage={percentage}
+            positivePercentage={countPositiveFeedback()}
           />
         ) : (
           <Notification message="There is no feedback" />
